@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Macarons Lovers</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- เพิ่มฟอนต์สำหรับเนื้อหา -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600&family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <!-- เพิ่ม Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+    <style>
+        /* สไตล์พิเศษสำหรับส่วน Pinterest */
+        .pinterest-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pinterest-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23f8b4d9" opacity="0.1" d="M20,50 C20,50 20,60 30,60 C40,60 40,50 40,50 C40,50 40,40 30,40 C20,40 20,50 20,50 Z"/></svg>');
+            background-size: 200px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .section-title {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #db2777;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .section-title p {
+            font-family: 'Quicksand', sans-serif;
+            font-size: 1.2rem;
+            color: #7c3aed;
+            max-width: 700px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+        
+        .pinterest-cards {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pinterest-card {
+            background: transparent; /* เปลี่ยนพื้นหลังเป็นโปร่งใส */
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(219, 39, 119, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 30px;
+            position: relative;
+            height: 300px; /* ลดความสูงเพราะไม่มีส่วนเนื้อหาข้างล่าง */
+        }
+        
+        .pinterest-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(219, 39, 119, 0.25);
+        }
+        
+        .pinterest-image {
+            height: 100%; /* ใช้ความสูงเต็มที่ของ card */
+            overflow: hidden;
+            position: relative;
+            border-radius: 20px; /* ทำให้รูปมีมุมโค้ง */
+        }
+        
+        .pinterest-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+            border-radius: 20px; /* ทำให้รูปมีมุมโค้ง */
+        }
+        
+        .pinterest-card:hover .pinterest-image img {
+            transform: scale(1.1);
+        }
+        
+        .pinterest-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 40%, rgba(219, 39, 119, 0.3) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 20px; /* ทำให้ overlay มีมุมโค้ง */
+        }
+        
+        .pinterest-card:hover .pinterest-overlay {
+            opacity: 0.7;
+        }
+        
+        /* เอฟเฟกต์ภาพลอย */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(219, 39, 119, 0.15);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-element:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+        .floating-element:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+        .floating-element:nth-child(3) { bottom: 30%; left: 15%; animation-delay: 2s; }
+        .floating-element:nth-child(4) { bottom: 20%; right: 5%; animation-delay: 3s; }
+        .floating-element:nth-child(5) { top: 40%; right: 20%; animation-delay: 4s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .pinterest-section {
+                padding: 60px 0;
+            }
+            
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .section-title p {
+                font-size: 1rem;
+                padding: 0 15px;
+            }
+            
+            .pinterest-card {
+                height: 250px; /* ปรับความสูงสำหรับมือถือ */
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .pinterest-card {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-primary py-3 d-none d-md-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <span class="text-white">|</span>
+                        <a class="text-white pl-3" href="Support.html">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
+                <a href="index.html" class="navbar-brand d-block d-lg-none">
+                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">i</span>CREAM</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link active">About</a>
+                        <a href="product.html" class="nav-item nav-link">Special Menu</a>
+                    </div>
+                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">M</span>acarons</h1>
+                    </a>
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="service.html" class="nav-item nav-link">Menu</a>
+                        <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    
+    <!-- Pinterest Inspiration Section Start -->
+    <section class="pinterest-section">
+        <div class="floating-elements">
+            <div class="floating-element"><i class="fas fa-heart"></i></div>
+            <div class="floating-element"><i class="fas fa-cookie-bite"></i></div>
+            <div class="floating-element"><i class="fas fa-palette"></i></div>
+            <div class="floating-element"><i class="fas fa-star"></i></div>
+            <div class="floating-element"><i class="fas fa-gem"></i></div>
+        </div>
+        
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="section-title text-center">
+                        <h2>Our Pinterest Inspiration</h2>
+                        <p>Discover the magical world of macarons through our curated collection of inspirations from Pinterest. Each image tells a story of color, flavor, and artistry that inspires our creations.</p>
+                    </div>
+                    
+                    <div class="row pinterest-cards">
+                        <!-- Card 1 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pinterest-card">
+                                <div class="pinterest-image">
+                                    <img src="img/about.jpg" alt="Macarons Inspiration">
+                                    <div class="pinterest-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 2 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pinterest-card">
+                                <div class="pinterest-image">
+                                    <img src="img/s4.jpg" alt="Macarons Inspiration">
+                                    <div class="pinterest-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 3 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pinterest-card">
+                                <div class="pinterest-image">
+                                    <img src="img/product-8.jpg" alt="Macarons Inspiration">
+                                    <div class="pinterest-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 4 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pinterest-card">
+                                <div class="pinterest-image">
+                                    <img src="img/s1.jpg" alt="Macarons Inspiration">
+                                    <div class="pinterest-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 5 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pinterest-card">
+                                <div class="pinterest-image">
+                                    <img src="img/s3.jpg" alt="Macarons Inspiration">
+                                    <div class="pinterest-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card 6 -->
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pinterest-card">
+                                <div class="pinterest-image">
+                                    <img src="img/s2.jpg" alt="Macarons Inspiration">
+                                    <div class="pinterest-overlay"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Inspiration Note -->
+                    <div class="text-center mt-5">
+                        <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 800px; margin: 0 auto;">
+                            <h3 style="color: #7c3aed; font-family: 'Dancing Script', cursive; font-size: 2.2rem; margin-bottom: 15px;">
+                                <i class="fas fa-lightbulb mr-2" style="color: #fbbf24;"></i> Creative Inspiration
+                            </h3>
+                            <p style="color: #6b7280; font-family: 'Quicksand', sans-serif; font-size: 1.1rem; line-height: 1.7;">
+                                These beautiful inspirations from Pinterest guide our culinary artists in creating unique macaron experiences. 
+                                We blend traditional French techniques with modern aesthetics to bring these visions to life in our kitchen.
+                                Follow our <a href="#" style="color: #db2777; text-decoration: none; font-weight: 500;">Pinterest board</a> for more delicious inspirations!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pinterest Inspiration Section End -->
+    
+</body>
+</html>

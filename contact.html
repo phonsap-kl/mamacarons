@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Macarons Lovers</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    
+    <style>
+        /* เพิ่มเฉพาะพื้นหลัง */
+        body {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 100%);
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23f8b4d9" opacity="0.1" d="M20,50 C20,50 20,60 30,60 C40,60 40,50 40,50 C40,50 40,40 30,40 C20,40 20,50 20,50 Z"/></svg>');
+            background-size: 200px;
+            opacity: 0.1;
+        }
+        
+        /* ไอคอนสีชมพูลอยได้ */
+        .floating-icons {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.2);
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg); 
+            }
+            50% { 
+                transform: translateY(-20px) rotate(10deg); 
+            }
+        }
+        
+        /* กรอบข้อความสุดตระการตา - ปรับสีชมพูมินิมอล */
+        .stunning-card {
+            background: linear-gradient(145deg, #ffffff, #fef6f9);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 
+                0 20px 60px rgba(255, 182, 193, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9),
+                0 0 0 1px rgba(255, 255, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+        }
+        
+        .stunning-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, 
+                #ffb6c1, #ffc0cb, #ffd1dc, #ffb6c1);
+            border-radius: 27px;
+            z-index: -1;
+            opacity: 0.3;
+            animation: gradientRotate 8s linear infinite;
+            background-size: 400% 400%;
+        }
+        
+        .stunning-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ffb6c1, #ffc0cb, #ffd1dc);
+            border-radius: 25px 25px 0 0;
+        }
+        
+        @keyframes gradientRotate {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .stunning-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 
+                0 30px 80px rgba(255, 182, 193, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.95),
+                0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+        
+        /* ภาพโปรไฟล์สุดสวย - ปรับสีชมพูมินิมอล */
+        .magic-image {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 35px;
+            cursor: pointer;
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 
+                0 15px 35px rgba(255, 182, 193, 0.2),
+                0 0 0 10px white,
+                0 0 0 12px #ffc0cb,
+                0 0 0 14px #fef6f9;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+        }
+        
+        .magic-image:hover {
+            transform: rotateY(10deg) scale(1.05);
+            box-shadow: 
+                0 20px 50px rgba(255, 182, 193, 0.25),
+                0 0 0 10px white,
+                0 0 0 12px #ffc0cb,
+                0 0 0 14px #fef6f9,
+                0 0 30px rgba(255, 182, 193, 0.3);
+        }
+        
+        .magic-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .magic-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .image-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, 
+                rgba(255, 182, 193, 0.4), 
+                rgba(255, 192, 203, 0.2));
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        
+        .magic-image:hover .image-glow {
+            opacity: 1;
+        }
+        
+        .click-hint {
+            position: absolute;
+            bottom: -25px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: #e2acba;
+            font-size: 14px;
+            font-weight: 500;
+            opacity: 0.8;
+            animation: pulse 3s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        /* ชื่อและข้อมูลส่วนตัว - ปรับสีชมพูมินิมอล */
+        .name-glow {
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: #ff8fab;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(255, 182, 193, 0.2);
+            letter-spacing: 1px;
+        }
+        
+        .name-english {
+            font-size: 1.4rem;
+            color: #ffb6c1;
+            margin-bottom: 40px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ข้อมูลการศึกษา - ขึ้นบรรทัดใหม่ */
+        .info-section-stunning {
+            background: linear-gradient(to right, 
+                rgba(255, 245, 247, 0.9), 
+                rgba(255, 250, 251, 0.95));
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ffc0cb;
+            box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.5),
+                        0 5px 15px rgba(255, 182, 193, 0.1);
+            transition: all 0.4s ease;
+        }
+        
+        .info-section-stunning:hover {
+            transform: translateX(5px);
+            box-shadow: inset 0 2px 10px rgba(255, 255, 255, 0.7),
+                        0 8px 20px rgba(255, 182, 193, 0.15);
+            border-left-color: #ff8fab;
+        }
+        
+        .info-item-stunning {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+        }
+        
+        .info-item-stunning:last-child {
+            margin-bottom: 0;
+        }
+        
+        .info-icon-stunning {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #ffc0cb, #ffb6c1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .info-item-stunning:hover .info-icon-stunning {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 10px 25px rgba(255, 182, 193, 0.25);
+        }
+        
+        .info-content-stunning {
+            flex: 1;
+        }
+        
+        .info-title {
+            color: #f0abbc;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+        
+        .info-detail {
+            color: #ff9eb5;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            display: block;
+            padding-left: 5px;
+        }
+        
+        /* ไอคอนโซเชียลสุดพิเศษ - ปรับสีชมพูมินิมอล */
+        .social-links-stunning {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 35px;
+        }
+        
+        .social-icon-stunning {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1;
+            background: #ffc0cb;
+            box-shadow: 0 8px 20px rgba(255, 182, 193, 0.2);
+        }
+        
+        .social-icon-stunning::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ffb6c1, #ff8fab, #ffc0cb);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .social-icon-stunning i {
+            color: white;
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .social-icon-stunning:hover::before {
+            opacity: 1;
+        }
+        
+        .social-icon-stunning:hover {
+            transform: translateY(-6px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(255, 182, 193, 0.25);
+        }
+        
+        .social-icon-stunning:hover i {
+            transform: rotate(360deg);
+        }
+        
+        /* Modal สุดหรู - ปรับสีชมพูมินิมอล */
+        .magic-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.4s ease;
+        }
+        
+        .modal-content-magic {
+            max-width: 85%;
+            max-height: 85%;
+            border-radius: 15px;
+            box-shadow: 
+                0 25px 100px rgba(255, 182, 193, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
+            animation: zoomIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .close-modal-magic {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #ffc0cb;
+            font-size: 45px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 2001;
+            text-shadow: 0 0 10px rgba(255, 182, 193, 0.5);
+        }
+        
+        .close-modal-magic:hover {
+            color: #ff8fab;
+            transform: rotate(90deg) scale(1.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes zoomIn {
+            from { transform: scale(0.7); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .stunning-card {
+                padding: 35px 25px;
+                margin: 0 15px;
+            }
+            
+            .name-glow {
+                font-size: 2.2rem;
+            }
+            
+            .magic-image {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .info-section-stunning {
+                padding: 20px;
+            }
+            
+            .social-icon-stunning {
+                width: 50px;
+                height: 50px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .name-glow {
+                font-size: 1.8rem;
+            }
+            
+            .magic-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .info-item-stunning {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .info-icon-stunning {
+                margin-bottom: 15px;
+            }
+            
+            .social-links-stunning {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-primary py-3 d-none d-md-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <span class="text-white">|</span>
+                        <a class="text-white pl-3" href="Support.html">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
+                <a href="index.html" class="navbar-brand d-block d-lg-none">
+                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">M</span>acarons</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="product.html" class="nav-item nav-link">Special Menu</a>
+                    </div>
+                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">M</span>acarons</h1>
+                    </a>
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="service.html" class="nav-item nav-link">Menu</a>
+                        <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+                        <a href="contact.html" class="nav-item nav-link active">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Header Start -->
+    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px; background: linear-gradient(135deg, rgba(255, 182, 193, 0.9), rgba(255, 192, 203, 0.9));">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-3 mt-lg-5">Contact</h1>
+            <div class="d-inline-flex align-items-center text-white">
+                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-circle px-3"></i>
+                <p class="m-0">Contact</p>
+            </div>
+        </div>
+    </div>
+    <!-- Header End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 col-md-12">
+                    <div class="stunning-card text-center">
+                        <!-- ภาพโปรไฟล์สุดสวย -->
+                        <div class="magic-image" onclick="openMagicModal()">
+                            <img src="img/view.jpg" alt="พรทรัพย์ กลิ่นอำพร">
+                            <div class="image-glow"></div>
+                            <div class="click-hint">✨ คลิกเพื่อดูรูปเต็ม ✨</div>
+                        </div>
+                        
+                        <h2 class="name-glow">นางสาว พรทรัพย์ กลิ่นอำพร</h2>
+                        <h4 class="name-english">Phonsap Klinoamphon</h4>
+                        
+                        <!-- ข้อมูลการศึกษา - ขึ้นบรรทัดใหม่ -->
+                        <div class="info-section-stunning text-left">
+                            <div class="info-item-stunning">
+                                <div class="info-icon-stunning">
+                                    <i class="fas fa-university"></i>
+                                </div>
+                                <div class="info-content-stunning">
+                                    <span class="info-title">Naresuan University</span>
+                                    <span class="info-detail">Information Technology</span>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item-stunning">
+                                <div class="info-icon-stunning">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="info-content-stunning">
+                                    <span class="info-title">อีเมล</span>
+                                    <span class="info-detail">phonsapk67@nu.ac.th</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- ไอคอนโซเชียลสุดพิเศษ -->
+                        <div class="social-links-stunning">
+                            <a href="https://www.instagram.com/_vvieww_?igsh=MTFhcHBqdHRiY2loMw==" 
+                               class="social-icon-stunning" 
+                               target="_blank"
+                               title="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/view.pornsub" 
+                               class="social-icon-stunning" 
+                               target="_blank"
+                               title="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal สำหรับแสดงรูปภาพ -->
+    <div id="magicModal" class="magic-modal">
+        <span class="close-modal-magic" onclick="closeMagicModal()">&times;</span>
+        <img class="modal-content-magic" id="magicModalImage" src="img/view.jpg" alt="พรทรัพย์ กลิ่นอำพร">
+    </div>
+
+    <!-- Contact End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <!-- Contact Javascript File -->
+    <script src="mail/jqBootstrapValidation.min.js"></script>
+    <script src="mail/contact.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+    
+    <script>
+        // เพิ่มไอคอนสีชมพูลอยได้
+        document.addEventListener('DOMContentLoaded', function() {
+            // สร้าง container สำหรับไอคอน
+            const iconContainer = document.createElement('div');
+            iconContainer.className = 'floating-icons';
+            document.body.appendChild(iconContainer);
+            
+            // ไอคอนสีชมพูมินิมอล
+            const pinkIcons = [
+                { symbol: '❤️', name: 'heart' },
+                { symbol: '⭐', name: 'star' },
+                { symbol: '🍪', name: 'cookie' },
+                { symbol: '✨', name: 'sparkle' },
+                { symbol: '🌸', name: 'flower' }
+            ];
+            
+            // เพิ่มไอคอน 5 อัน
+            pinkIcons.forEach((icon, index) => {
+                const iconElement = document.createElement('div');
+                iconElement.className = 'floating-icon';
+                iconElement.textContent = icon.symbol;
+                iconElement.style.fontSize = '2.5rem';
+                iconElement.style.color = 'rgba(255, 182, 193, 0.2)';
+                
+                // ตำแหน่ง
+                switch(index) {
+                    case 0: // heart
+                        iconElement.style.top = '10%';
+                        iconElement.style.left = '5%';
+                        iconElement.style.animationDelay = '0s';
+                        break;
+                    case 1: // star
+                        iconElement.style.top = '20%';
+                        iconElement.style.right = '10%';
+                        iconElement.style.left = 'auto';
+                        iconElement.style.animationDelay = '1s';
+                        break;
+                    case 2: // cookie
+                        iconElement.style.bottom = '30%';
+                        iconElement.style.left = '15%';
+                        iconElement.style.top = 'auto';
+                        iconElement.style.animationDelay = '2s';
+                        break;
+                    case 3: // sparkle
+                        iconElement.style.bottom = '20%';
+                        iconElement.style.right = '5%';
+                        iconElement.style.left = 'auto';
+                        iconElement.style.top = 'auto';
+                        iconElement.style.animationDelay = '3s';
+                        break;
+                    case 4: // flower
+                        iconElement.style.top = '40%';
+                        iconElement.style.right = '20%';
+                        iconElement.style.left = 'auto';
+                        iconElement.style.animationDelay = '4s';
+                        break;
+                }
+                
+                iconContainer.appendChild(iconElement);
+            });
+        });
+        
+        // ฟังก์ชันสำหรับเปิด modal รูปภาพ
+        function openMagicModal() {
+            const modal = document.getElementById('magicModal');
+            const modalImage = document.getElementById('magicModalImage');
+            
+            // โหลดรูปภาพต้นฉบับ
+            const originalImage = new Image();
+            originalImage.src = 'img/view.jpg';
+            originalImage.onload = function() {
+                modalImage.src = originalImage.src;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            };
+        }
+        
+        // ฟังก์ชันสำหรับปิด modal รูปภาพ
+        function closeMagicModal() {
+            const modal = document.getElementById('magicModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // ปิด modal เมื่อคลิกที่พื้นหลัง
+        document.getElementById('magicModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMagicModal();
+            }
+        });
+        
+        // ปิด modal ด้วยปุ่ม ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeMagicModal();
+            }
+        });
+    </script>
+    
+</body>
+
+</html>

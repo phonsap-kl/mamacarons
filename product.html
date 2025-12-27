@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Macarons Lovers</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <link href="img/favicon.ico" rel="icon">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    
+    <style>
+        /* พื้นหลังสีชมพูพาสเทลและไอคอนขนมขยับได้ */
+        body {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #fff0f5 0%, #f8f0ff 50%, #fff8f0 100%);
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -999;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(255, 182, 193, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 30% 60%, rgba(255, 192, 203, 0.25) 0%, transparent 40%),
+                radial-gradient(circle at 70% 30%, rgba(255, 218, 185, 0.2) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 0.4) 0%, transparent 60%);
+            animation: gentleMove 25s ease-in-out infinite alternate;
+            background-size: 300% 300%;
+            opacity: 0.8;
+        }
+        
+        /* สร้างไอคอนขนมลอยได้ */
+        .sweet-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -998;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .sweet-icon {
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            color: rgba(255, 182, 193, 0.4);
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+            z-index: -997;
+            user-select: none;
+        }
+        
+        .sweet-icon::before {
+            content: attr(data-icon);
+        }
+        
+        .sweet-icon.macaroon { color: rgba(221, 160, 221, 0.5); text-shadow: 0 0 15px rgba(186, 85, 211, 0.4); }
+        .sweet-icon.cookie { color: rgba(255, 228, 181, 0.5); text-shadow: 0 0 15px rgba(210, 180, 140, 0.4); }
+        .sweet-icon.cake { color: rgba(255, 192, 203, 0.5); text-shadow: 0 0 15px rgba(255, 105, 180, 0.4); }
+        .sweet-icon.icecream { color: rgba(173, 216, 230, 0.5); text-shadow: 0 0 15px rgba(135, 206, 250, 0.4); }
+
+        /* เอฟเฟกต์รูปภาพในเมนู */
+        .product-item img {
+            transition: .5s;
+            cursor: pointer;
+        }
+        .product-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        @keyframes gentleMove {
+            0% { background-position: 0% 0%; transform: scale(1); }
+            50% { background-position: 50% 100%; transform: scale(1.02); }
+            100% { background-position: 100% 0%; transform: scale(1); }
+        }
+        
+        @keyframes floatSweet {
+            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
+            50% { transform: translate(-10px, -30px) rotate(-5deg) scale(0.9); }
+        }
+        
+        @keyframes pulseSweet {
+            0%, 100% { opacity: 0.4; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.2); }
+        }
+        
+        @keyframes rotateSweet {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes bounceSweet {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid bg-primary py-3 d-none d-md-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-lg-left mb-2 mb-lg-0">
+                    <div class="d-inline-flex align-items-center">
+                        <span class="text-white">|</span>
+                        <a class="text-white pl-3" href="Support.html">Support</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid position-relative nav-bar p-0">
+        <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
+            <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
+                <a href="index.html" class="navbar-brand d-block d-lg-none">
+                    <h1 class="m-0 display-4 text-primary"><span class="text-secondary">M</span>acarons</h1>
+                </a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav ml-auto py-0">
+                        <a href="index.html" class="nav-item nav-link">Home</a>
+                        <a href="about.html" class="nav-item nav-link">About</a>
+                        <a href="product.html" class="nav-item nav-link active">Special Menu</a>
+                    </div>
+                    <a href="index.html" class="navbar-brand mx-5 d-none d-lg-block">
+                        <h1 class="m-0 display-4 text-primary"><span class="text-secondary">M</span>acarons</h1>
+                    </a>
+                    <div class="navbar-nav mr-auto py-0">
+                        <a href="service.html" class="nav-item nav-link">Menu</a>
+                        <a href="gallery.html" class="nav-item nav-link">Gallery</a>
+                        <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
+        <div class="container text-center py-5">
+            <h1 class="text-white display-3 mt-lg-5">Special Menu</h1>
+            <div class="d-inline-flex align-items-center text-white">
+                <p class="m-0"><a class="text-white" href="">Home</a></p>
+                <i class="fa fa-circle px-3"></i>
+                <p class="m-0">Special Menu</p>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid py-5">
+        <div class="container py-5">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-12">
+                    <h1 class="m-0 mt-n4 display-4 text-primary mb-5">Special Menu of Macarons Lovers</h1>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">250</h4>
+                        </div>
+                        <a href="img/product-1.jpg" data-lightbox="special-menu" data-title="Christmas Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-1.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Christmas Set</h5>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">300</h4>
+                        </div>
+                        <a href="img/product-2.jpg" data-lightbox="special-menu" data-title="Birthday Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-2.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Birthday Set</h5>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">250</h4>
+                        </div>
+                        <a href="img/product-3.jpg" data-lightbox="special-menu" data-title="Snoopy Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-3.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Snoopy Set</h5>
+                    </div>
+                </div>
+                
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">400</h4>
+                        </div>
+                        <a href="img/product-4.jpg" data-lightbox="special-menu" data-title="Princess Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-4.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Princess Set</h5>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">450</h4>
+                        </div>
+                        <a href="img/product-5.jpg" data-lightbox="special-menu" data-title="Anpanman Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-5.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Anpanman Set</h5>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">200</h4>
+                        </div>
+                        <a href="img/product-6.jpg" data-lightbox="special-menu" data-title="Bear Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-6.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Bear Set</h5>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">400</h4>
+                        </div>
+                        <a href="img/product-7.jpg" data-lightbox="special-menu" data-title="Mix Set">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-7.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Mix Set</h5>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4 pb-2">
+                    <div class="product-item d-flex flex-column align-items-center text-center bg-light rounded py-5 px-3">
+                        <div class="bg-primary mt-n5 py-3" style="width: 80px;">
+                            <h4 class="font-weight-bold text-white mb-0">350</h4>
+                        </div>
+                        <a href="img/product-8.jpg" data-lightbox="special-menu" data-title="Macarons Cake">
+                            <div class="position-relative bg-primary rounded-circle mt-n3 mb-4 p-3 overflow-hidden" style="width: 150px; height: 150px;">
+                                <img class="rounded-circle w-100 h-100" src="img/product-8.jpg" style="object-fit: cover;">
+                            </div>
+                        </a>
+                        <h5 class="font-weight-bold mb-4">Macarons Cake</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/isotope/isotope.pkgd.min.js"></script>
+    <script src="lib/lightbox/js/lightbox.min.js"></script>
+
+    <script src="js/main.js"></script>
+    
+    <script>
+        // ไอคอนขนมลอยได้ (เหมือนเดิม)
+        document.addEventListener('DOMContentLoaded', function() {
+            const sweetContainer = document.createElement('div');
+            sweetContainer.className = 'sweet-background';
+            document.body.appendChild(sweetContainer);
+            
+            const sweetIcons = [
+                { icon: '🍪', class: 'cookie' },
+                { icon: '🍩', class: 'macaroon' },
+                { icon: '🍰', class: 'cake' },
+                { icon: '🍫', class: 'cookie' },
+                { icon: '🍦', class: 'icecream' }
+            ];
+            
+            for (let i = 0; i < 30; i++) {
+                const sweetIcon = document.createElement('div');
+                sweetIcon.className = 'sweet-icon';
+                const randomIcon = sweetIcons[Math.floor(Math.random() * sweetIcons.length)];
+                sweetIcon.setAttribute('data-icon', randomIcon.icon);
+                sweetIcon.classList.add(randomIcon.class);
+                
+                const size = Math.random() * 40 + 20;
+                sweetIcon.style.fontSize = `${size}px`;
+                sweetIcon.style.left = `${Math.random() * 100}%`;
+                sweetIcon.style.top = `${Math.random() * 100}%`;
+                
+                const duration = 15 + Math.random() * 15;
+                sweetIcon.style.animation = `floatSweet ${duration}s ease-in-out infinite`;
+                sweetIcon.style.opacity = `${0.2 + Math.random() * 0.3}`;
+                sweetContainer.appendChild(sweetIcon);
+            }
+        });
+    </script>
+</body>
+
+</html>
