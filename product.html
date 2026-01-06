@@ -21,14 +21,18 @@
     <link href="css/style.css" rel="stylesheet">
     
     <style>
-        /* พื้นหลังสีชมพูพาสเทลและไอคอนขนมขยับได้ */
+        /* พื้นหลังสีชมพูอ่อนสบายตาพร้อมนิมอล */
         body {
             position: relative;
             min-height: 100vh;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #fff0f5 0%, #f8f0ff 50%, #fff8f0 100%);
+            background: linear-gradient(145deg, 
+                #fff5f7 0%, 
+                #fff0f5 50%, 
+                #ffebf3 100%);
         }
         
+        /* นิมอลฟองสบู่ลอยละล่อง */
         body::before {
             content: '';
             position: fixed;
@@ -38,47 +42,61 @@
             height: 100%;
             z-index: -999;
             background: 
-                radial-gradient(circle at 10% 20%, rgba(255, 182, 193, 0.3) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(255, 182, 193, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 30% 60%, rgba(255, 192, 203, 0.25) 0%, transparent 40%),
-                radial-gradient(circle at 70% 30%, rgba(255, 218, 185, 0.2) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(255, 240, 245, 0.4) 0%, transparent 60%);
-            animation: gentleMove 25s ease-in-out infinite alternate;
-            background-size: 300% 300%;
-            opacity: 0.8;
+                radial-gradient(circle at 10% 20%, rgba(255, 200, 221, 0.25) 0%, transparent 25%),
+                radial-gradient(circle at 90% 30%, rgba(255, 182, 193, 0.2) 0%, transparent 30%),
+                radial-gradient(circle at 30% 70%, rgba(255, 105, 180, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 70% 80%, rgba(255, 20, 147, 0.1) 0%, transparent 40%);
+            animation: gentleFloat 30s ease-in-out infinite;
+            pointer-events: none;
         }
         
-        /* สร้างไอคอนขนมลอยได้ */
-        .sweet-background {
+        /* นิมอลฟองอากาศสีตัดกับชมพู */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -998;
+            pointer-events: none;
+            animation: floatBubble 15s ease-in-out infinite;
+            box-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.5),
+                inset 0 0 10px rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        
+        /* สีตัดกับชมพูที่เลือกมาแล้วดูดี */
+        .bubble.color-1 { background: rgba(135, 206, 235, 0.25); } /* Sky Blue - สีฟ้าอ่อน */
+        .bubble.color-2 { background: rgba(152, 251, 152, 0.25); } /* Pale Green - เขียวอ่อน */
+        .bubble.color-3 { background: rgba(230, 230, 250, 0.25); } /* Lavender - ม่วงอ่อน */
+        .bubble.color-4 { background: rgba(255, 228, 181, 0.25); } /* Moccasin - สีพีชอ่อน */
+        .bubble.color-5 { background: rgba(216, 191, 216, 0.25); } /* Thistle - ม่วงชมพูอ่อน */
+        
+        /* นิมอลลายจุดประกระจาย */
+        .dot-pattern {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -998;
-            pointer-events: none;
-            overflow: hidden;
-        }
-        
-        .sweet-icon {
-            position: absolute;
-            font-family: "Font Awesome 5 Free";
-            font-weight: 900;
-            color: rgba(255, 182, 193, 0.4);
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
             z-index: -997;
-            user-select: none;
+            background-image: 
+                radial-gradient(circle at 1px 1px, rgba(255, 182, 193, 0.15) 1px, transparent 2px);
+            background-size: 40px 40px;
+            animation: patternMove 80s linear infinite;
+            pointer-events: none;
         }
         
-        .sweet-icon::before {
-            content: attr(data-icon);
+        /* นิมอลเส้นโค้งอ่อนๆ */
+        .curve {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border: 2px solid rgba(255, 182, 193, 0.1);
+            border-radius: 45% 55% 65% 35%;
+            z-index: -997;
+            pointer-events: none;
+            animation: rotateCurve 60s linear infinite;
         }
         
-        .sweet-icon.macaroon { color: rgba(221, 160, 221, 0.5); text-shadow: 0 0 15px rgba(186, 85, 211, 0.4); }
-        .sweet-icon.cookie { color: rgba(255, 228, 181, 0.5); text-shadow: 0 0 15px rgba(210, 180, 140, 0.4); }
-        .sweet-icon.cake { color: rgba(255, 192, 203, 0.5); text-shadow: 0 0 15px rgba(255, 105, 180, 0.4); }
-        .sweet-icon.icecream { color: rgba(173, 216, 230, 0.5); text-shadow: 0 0 15px rgba(135, 206, 250, 0.4); }
-
         /* เอฟเฟกต์รูปภาพในเมนู */
         .product-item img {
             transition: .5s;
@@ -87,36 +105,136 @@
         .product-item:hover img {
             transform: scale(1.1);
         }
-        
-        @keyframes gentleMove {
-            0% { background-position: 0% 0%; transform: scale(1); }
-            50% { background-position: 50% 100%; transform: scale(1.02); }
-            100% { background-position: 100% 0%; transform: scale(1); }
+
+        /* วงกลมสีฟ้าสวยงาม */
+        .product-item .bg-primary {
+            background: linear-gradient(135deg, #89CFF0 0%, #4dabf7 100%) !important;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 4px 15px rgba(137, 207, 240, 0.3),
+                0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .position-relative.bg-primary {
+            background: linear-gradient(135deg, #A7C7E7 0%, #6CB4EE 100%) !important;
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            box-shadow: 
+                0 8px 25px rgba(108, 180, 238, 0.4),
+                inset 0 0 20px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% {
+                background-position: 0% 0%;
+                transform: scale(1);
+            }
+            33% {
+                background-position: 50% 33%;
+                transform: scale(1.02);
+            }
+            66% {
+                background-position: 100% 66%;
+                transform: scale(0.98);
+            }
         }
         
-        @keyframes floatSweet {
-            0%, 100% { transform: translate(0, 0) rotate(0deg) scale(1); }
-            50% { transform: translate(-10px, -30px) rotate(-5deg) scale(0.9); }
+        @keyframes floatBubble {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.4;
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px) scale(1.1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-50px) translateX(-50px) scale(0.9);
+                opacity: 0.5;
+            }
+            75% {
+                transform: translateY(-150px) translateX(25px) scale(1.2);
+                opacity: 0.7;
+            }
         }
         
-        @keyframes pulseSweet {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.7; transform: scale(1.2); }
+        @keyframes patternMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 40px 40px;
+            }
         }
         
-        @keyframes rotateSweet {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        @keyframes rotateCurve {
+            0% {
+                transform: rotate(0deg) scale(1);
+            }
+            50% {
+                transform: rotate(180deg) scale(1.1);
+            }
+            100% {
+                transform: rotate(360deg) scale(1);
+            }
         }
         
-        @keyframes bounceSweet {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+        /* เอฟเฟกต์เงาสวยงามสำหรับไอเท็ม */
+        .product-item {
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 15px 35px rgba(255, 182, 193, 0.2),
+                0 5px 15px rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.95);
+        }
+        
+        /* นิมอลแสงประกาย */
+        .sparkle {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+            animation: sparkleTwinkle 2s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkleTwinkle {
+            0%, 100% {
+                opacity: 0.2;
+                transform: scale(0.5);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
         }
     </style>
 </head>
 
 <body>
+    <!-- นิมอลฟองอากาศ -->
+    <div id="bubbles-container"></div>
+    
+    <!-- นิมอลลายจุดประ -->
+    <div class="dot-pattern"></div>
+    
+    <!-- นิมอลเส้นโค้ง -->
+    <div class="curve" style="top: 10%; left: 5%;"></div>
+    <div class="curve" style="top: 70%; left: 80%; width: 200px; height: 200px; animation-duration: 40s;"></div>
+    
+    <!-- นิมอลแสงประกาย -->
+    <div id="sparkles-container"></div>
+    
     <div class="container-fluid bg-primary py-3 d-none d-md-block">
         <div class="container">
             <div class="row">
@@ -291,7 +409,6 @@
     </div>
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
 
-
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -303,39 +420,86 @@
     <script src="js/main.js"></script>
     
     <script>
-        // ไอคอนขนมลอยได้ (เหมือนเดิม)
+        // สร้างนิมอลฟองอากาศสีตัดกับชมพู
         document.addEventListener('DOMContentLoaded', function() {
-            const sweetContainer = document.createElement('div');
-            sweetContainer.className = 'sweet-background';
-            document.body.appendChild(sweetContainer);
+            const bubblesContainer = document.getElementById('bubbles-container');
             
-            const sweetIcons = [
-                { icon: '🍪', class: 'cookie' },
-                { icon: '🍩', class: 'macaroon' },
-                { icon: '🍰', class: 'cake' },
-                { icon: '🍫', class: 'cookie' },
-                { icon: '🍦', class: 'icecream' }
-            ];
+            // สร้างฟองอากาศสีต่างๆ
+            const colorClasses = ['color-1', 'color-2', 'color-3', 'color-4', 'color-5'];
             
-            for (let i = 0; i < 30; i++) {
-                const sweetIcon = document.createElement('div');
-                sweetIcon.className = 'sweet-icon';
-                const randomIcon = sweetIcons[Math.floor(Math.random() * sweetIcons.length)];
-                sweetIcon.setAttribute('data-icon', randomIcon.icon);
-                sweetIcon.classList.add(randomIcon.class);
+            for (let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
                 
-                const size = Math.random() * 40 + 20;
-                sweetIcon.style.fontSize = `${size}px`;
-                sweetIcon.style.left = `${Math.random() * 100}%`;
-                sweetIcon.style.top = `${Math.random() * 100}%`;
+                // สุ่มเลือกสี
+                const colorClass = colorClasses[Math.floor(Math.random() * colorClasses.length)];
+                bubble.classList.add(colorClass);
                 
-                const duration = 15 + Math.random() * 15;
-                sweetIcon.style.animation = `floatSweet ${duration}s ease-in-out infinite`;
-                sweetIcon.style.opacity = `${0.2 + Math.random() * 0.3}`;
-                sweetContainer.appendChild(sweetIcon);
+                const size = Math.random() * 70 + 30;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.top = `${Math.random() * 100}%`;
+                
+                // ความเร็วการลอย
+                const duration = 12 + Math.random() * 25;
+                const delay = Math.random() * 15;
+                bubble.style.animation = `floatBubble ${duration}s ease-in-out infinite`;
+                bubble.style.animationDelay = `${delay}s`;
+                
+                // เพิ่มเอฟเฟกต์เงาเฉพาะสี
+                if (colorClass === 'color-1') {
+                    bubble.style.boxShadow += `, 0 0 30px rgba(135, 206, 235, 0.3)`;
+                } else if (colorClass === 'color-2') {
+                    bubble.style.boxShadow += `, 0 0 30px rgba(152, 251, 152, 0.3)`;
+                } else if (colorClass === 'color-3') {
+                    bubble.style.boxShadow += `, 0 0 30px rgba(230, 230, 250, 0.3)`;
+                } else if (colorClass === 'color-4') {
+                    bubble.style.boxShadow += `, 0 0 30px rgba(255, 228, 181, 0.3)`;
+                } else if (colorClass === 'color-5') {
+                    bubble.style.boxShadow += `, 0 0 30px rgba(216, 191, 216, 0.3)`;
+                }
+                
+                bubblesContainer.appendChild(bubble);
+            }
+            
+            // สร้างนิมอลแสงประกาย
+            const sparklesContainer = document.getElementById('sparkles-container');
+            
+            for (let i = 0; i < 20; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                
+                sparkle.style.left = `${Math.random() * 100}%`;
+                sparkle.style.top = `${Math.random() * 100}%`;
+                
+                const size = 2 + Math.random() * 4;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                const duration = 1 + Math.random() * 3;
+                const delay = Math.random() * 5;
+                sparkle.style.animation = `sparkleTwinkle ${duration}s ease-in-out infinite`;
+                sparkle.style.animationDelay = `${delay}s`;
+                
+                // สีแสงประกายสุ่มจากสีฟอง
+                const sparkleColor = colorClasses[Math.floor(Math.random() * colorClasses.length)];
+                if (sparkleColor === 'color-1') {
+                    sparkle.style.backgroundColor = 'rgba(135, 206, 235, 0.8)';
+                } else if (sparkleColor === 'color-2') {
+                    sparkle.style.backgroundColor = 'rgba(152, 251, 152, 0.8)';
+                } else if (sparkleColor === 'color-3') {
+                    sparkle.style.backgroundColor = 'rgba(230, 230, 250, 0.8)';
+                } else if (sparkleColor === 'color-4') {
+                    sparkle.style.backgroundColor = 'rgba(255, 228, 181, 0.8)';
+                } else if (sparkleColor === 'color-5') {
+                    sparkle.style.backgroundColor = 'rgba(216, 191, 216, 0.8)';
+                }
+                
+                sparklesContainer.appendChild(sparkle);
             }
         });
     </script>
 </body>
-
 </html>
