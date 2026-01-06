@@ -20,61 +20,75 @@
 
     <link href="css/style.css" rel="stylesheet">
     
-    <!-- แก้เฉพาะพื้นหลัง -->
     <style>
-body {
-    background:
-        radial-gradient(circle, rgba(255,255,255,0.8) 2px, transparent 2px),
-        radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px),
-        radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
-        linear-gradient(120deg, #fff0f5, #ffe4ec, #fff7fa);
-    background-size:
-        120px 120px,
-        180px 180px,
-        250px 250px,
-        100% 100%;
-    animation: snowFall 25s linear infinite;
-}
+        /* พื้นหลัง */
+        body {
+            background:
+                radial-gradient(circle, rgba(255,255,255,0.8) 2px, transparent 2px),
+                radial-gradient(circle, rgba(255,255,255,0.6) 1.5px, transparent 1.5px),
+                radial-gradient(circle, rgba(255,255,255,0.5) 1px, transparent 1px),
+                linear-gradient(120deg, #fff0f5, #ffe4ec, #fff7fa);
+            background-size:
+                120px 120px,
+                180px 180px,
+                250px 250px,
+                100% 100%;
+            animation: snowFall 25s linear infinite;
+        }
 
-/* หิมะตกช้า ๆ สบายตา */
-@keyframes snowFall {
-    0% {
-        background-position:
-            0 0,
-            0 0,
-            0 0,
-            0 0;
-    }
-    100% {
-        background-position:
-            0 800px,
-            50px 1000px,
-            -50px 1200px,
-            0 0;
-    }
-}
-</style>
+        /* หิมะตก */
+        @keyframes snowFall {
+            0% {
+                background-position:
+                    0 0,
+                    0 0,
+                    0 0,
+                    0 0;
+            }
+            100% {
+                background-position:
+                    0 800px,
+                    50px 1000px,
+                    -50px 1200px,
+                    0 0;
+            }
+        }
 
->
+        /* Animation สำหรับกรอบ Mininal */
+        @keyframes gentleGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 10px 30px rgba(236, 64, 122, 0.05),
+                    0 1px 3px rgba(0, 0, 0, 0.05);
+            }
+            50% {
+                box-shadow: 
+                    0 15px 40px rgba(236, 64, 122, 0.08),
+                    0 2px 5px rgba(0, 0, 0, 0.07);
+            }
+        }
 
-    <a href="#" class="btn btn-secondary px-2 back-to-top">
-        <i class="fa fa-angle-double-up"></i>
-    </a>
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-2px);
+            }
+        }
 
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/isotope/isotope.pkgd.min.js"></script>
-    <script src="lib/lightbox/js/lightbox.min.js"></script>
-
-    <script src="mail/jqBootstrapValidation.min.js"></script>
-    <script src="mail/contact.js"></script>
-
-    <script src="js/main.js"></script>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-
 
 <body>
     <div class="flare"></div>
@@ -91,6 +105,7 @@ body {
             </div>
         </div>
     </div>
+    
     <div class="container-fluid position-relative nav-bar p-0">
         <div class="container-lg position-relative p-0 px-lg-3" style="z-index: 9;">
             <nav class="navbar navbar-expand-lg bg-white navbar-light shadow p-lg-0">
@@ -118,6 +133,7 @@ body {
             </nav>
         </div>
     </div>
+    
     <div class="jumbotron jumbotron-fluid page-header" style="margin-bottom: 90px;">
         <div class="container text-center py-5">
             <h1 class="text-white display-3 mt-lg-5">Special Menu</h1>
@@ -128,11 +144,160 @@ body {
             </div>
         </div>
     </div>
+    
     <div class="container-fluid py-5">
         <div class="container py-5">
             <div class="row justify-content-center text-center">
                 <div class="col-lg-12">
-                    <h1 class="m-0 mt-n4 display-4 text-primary mb-5">Special Menu of Macarons Lovers</h1>
+                    <!-- กรอบ Mininal สบายตา -->
+                    <div style="
+                        position: relative;
+                        padding: 50px 30px;
+                        margin-bottom: 50px;
+                        background: #ffffff;
+                        border-radius: 20px;
+                        box-shadow: 
+                            0 10px 30px rgba(236, 64, 122, 0.05),
+                            0 1px 3px rgba(0, 0, 0, 0.05);
+                        border: 1px solid rgba(236, 64, 122, 0.08);
+                        overflow: hidden;
+                        animation: gentleGlow 8s ease-in-out infinite;
+                        transition: all 0.3s ease;
+                    ">
+                        <!-- เส้นขอบด้านบนแบบบาง -->
+                        <div style="
+                            position: absolute;
+                            top: 0;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: 120px;
+                            height: 2px;
+                            background: linear-gradient(90deg, 
+                                transparent, 
+                                rgba(236, 64, 122, 0.2), 
+                                transparent);
+                        "></div>
+                        
+                        <!-- จุดตกแต่งมุมซ้ายบน -->
+                        <div style="
+                            position: absolute;
+                            top: 20px;
+                            left: 20px;
+                            width: 8px;
+                            height: 8px;
+                            background: rgba(236, 64, 122, 0.15);
+                            border-radius: 50%;
+                        "></div>
+                        
+                        <!-- จุดตกแต่งมุมขวาบน -->
+                        <div style="
+                            position: absolute;
+                            top: 20px;
+                            right: 20px;
+                            width: 8px;
+                            height: 8px;
+                            background: rgba(236, 64, 122, 0.15);
+                            border-radius: 50%;
+                        "></div>
+                        
+                        <!-- จุดตกแต่งมุมซ้ายล่าง -->
+                        <div style="
+                            position: absolute;
+                            bottom: 20px;
+                            left: 20px;
+                            width: 8px;
+                            height: 8px;
+                            background: rgba(236, 64, 122, 0.15);
+                            border-radius: 50%;
+                        "></div>
+                        
+                        <!-- จุดตกแต่งมุมขวาล่าง -->
+                        <div style="
+                            position: absolute;
+                            bottom: 20px;
+                            right: 20px;
+                            width: 8px;
+                            height: 8px;
+                            background: rgba(236, 64, 122, 0.15);
+                            border-radius: 50%;
+                        "></div>
+                        
+                        <!-- เนื้อหาหลัก -->
+                        <div style="
+                            position: relative;
+                            z-index: 2;
+                            animation: subtleFloat 6s ease-in-out infinite;
+                        ">
+                            <!-- หัวข้อหลักแบบ Mininal -->
+                            <h1 style="
+                                color: #ec407a;
+                                font-weight: 600;
+                                font-size: 3.2rem;
+                                letter-spacing: -0.5px;
+                                margin-bottom: 15px;
+                                line-height: 1.2;
+                                animation: fadeInUp 0.8s ease-out;
+                            ">
+                                Special Menu of Macarons Lovers
+                            </h1>
+                            
+                            <!-- เส้นแบ่งแบบบาง -->
+                            <div style="
+                                width: 80px;
+                                height: 1px;
+                                background: linear-gradient(90deg, 
+                                    rgba(236, 64, 122, 0.1), 
+                                    rgba(236, 64, 122, 0.3), 
+                                    rgba(236, 64, 122, 0.1));
+                                margin: 25px auto;
+                            "></div>
+                            
+                            <!-- ข้อความรองแบบ Mininal -->
+                            <p style="
+                                color: #666;
+                                font-size: 1.1rem;
+                                font-weight: 400;
+                                line-height: 1.6;
+                                max-width: 600px;
+                                margin: 0 auto 25px auto;
+                                opacity: 0.8;
+                            ">
+                                มาการองสุดประณีตที่เราคัดสรรมาอย่างดี <br>รังสรรค์ด้วยความใส่ใจและพิถีพิถันเหมาะสำหรับทุกโอกาสพิเศษ
+                            </p>
+                            
+                            <!-- ข้อความเล็กด้านล่าง -->
+                            <div style="
+                                margin-top: 30px;
+                                padding-top: 20px;
+                                border-top: 1px solid rgba(236, 64, 122, 0.05);
+                            ">
+                                <span style="
+                                    color: #ec407a;
+                                    font-size: 0.9rem;
+                                    font-weight: 500;
+                                    letter-spacing: 1px;
+                                    text-transform: uppercase;
+                                    opacity: 0.6;
+                                ">
+                                ❤️❤️❤️ 
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <!-- เงาล่างแบบบาง -->
+                        <div style="
+                            position: absolute;
+                            bottom: -8px;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            width: 90%;
+                            height: 15px;
+                            background: rgba(0, 0, 0, 0.02);
+                            filter: blur(8px);
+                            border-radius: 50%;
+                            z-index: 1;
+                        "></div>
+                    </div>
                 </div>
             </div>
             
@@ -251,8 +416,8 @@ body {
             </div>
         </div>
     </div>
+    
     <a href="#" class="btn btn-secondary px-2 back-to-top"><i class="fa fa-angle-double-up"></i></a>
-
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
